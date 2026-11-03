@@ -76,3 +76,4 @@ mori/node_modules/
 mori/android/app/mori-plugins.txt
 mori/android/app/src/main/assets/
 mori/android/capacitor-cordova-android-plugins/
+!mori/scripts
