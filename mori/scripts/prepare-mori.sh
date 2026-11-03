@@ -44,6 +44,9 @@ for d in dirs:
         t = strip_block(t, r"(?m)^buildscript")
         t = re.sub(r"(?m)^\s*(apply plugin:\s*['\"]kotlin-android['\"]|id\(?\s*['\"](kotlin-android|org\.jetbrains\.kotlin\.android)['\"]\s*\)?)\s*$", "", t)
         t = t.replace("lintOptions", "lint").replace("jcenter()", "")
+        # buildscript dihapus -> definisikan ulang kotlin_version (dipakai di dependencies Capacitor)
+        if "plugins {" not in t and "kotlin_version" in t and "ext.kotlin_version" not in t:
+            t = "ext.kotlin_version = '2.4.0'\n" + t
         if t != o:
             f.write_text(t)
             print("dipatch:", f)
